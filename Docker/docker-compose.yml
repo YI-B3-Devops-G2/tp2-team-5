@@ -1,0 +1,59 @@
+version: '3.1'
+
+services:
+  nodejs:
+    build:
+      context: ../
+      dockerfile: Docker/node/Dockerfile
+    container_name: api
+    environment:
+      - NODE_ENV=production
+      - PORT=2222
+      - DB_USER=admin
+      - DB_PASSWORD=azerty
+      - DB_NAME=test
+      - DB_HOST=devops_tp_postgres
+    ports:
+      - 2222:2222
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - sub_network_db
+      - sub_network_node
+    volumes:
+      - ../:/home/node/app
+  postgres:
+    image: postgres
+    container_name: devops_tp_postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: azerty
+      POSTGRES_DB: test
+      PGDATA: /data/postgres
+    restart: unless-stopped
+    volumes:
+      - ./postgres-persistent:/data/postgres
+    networks:
+      - sub_network_db
+  redis:
+    image: redis
+    container_name: devops_tp_redis
+    networks:
+      - sub_network_db
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    depends_on:
+      - nodejs
+    environment:
+      - HOSTNAME=devops_tp2_node:2222
+    networks:
+      - sub_network_node
+    ports:
+      - 8080:80
+
+networks:
+  sub_network_db:
+  sub_network_node:
