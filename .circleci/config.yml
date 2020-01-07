@@ -42,10 +42,6 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # ESLint & Prettier
-      - run:
-          name: ESLint & Prettier
-          command: npm eslint
   build-image:
     executor: docker-publisher
     steps:
