@@ -6,8 +6,8 @@
   "author": "KaunoganLemoine <kaunogan.lemoine@ynov.com>",
   "scripts": {
     "start": "node index.js",
-    "nodev  ": "nodemon index.js",
-    "dcompose": "docker-compose -f ./Docker/docker-compose.yml up --build --force-recreate"
+    "node": "nodemon index.js",
+    "compose": "docker-compose -f ./Docker/docker-compose.yml up --build --force-recreate"
   },
   "dependencies": {
     "cors": "^2.8.5",
