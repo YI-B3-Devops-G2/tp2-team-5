@@ -8,6 +8,8 @@ executors:
     environment:
       IMAGE_NAME: ynov-devops-tp2-team-5
       DOCKERHUB_USERNAME: kaunogan
+      DOCKERHUB_PASS: 647D22C45C
+      DOCKERHUB_USERNAME: kaunogan
     docker:
       - image: circleci/buildpack-deps:stretch
 jobs:
