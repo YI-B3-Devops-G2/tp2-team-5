@@ -6,7 +6,7 @@ version: 2.1
 executors:
   docker-publisher:
     environment:
-      IMAGE_NAME: ynov-devops-tp2-team-5
+      IMAGE_NAME: kaunogan/ynov-devops-tp2-team-5
       DOCKERHUB_USERNAME: kaunogan
       DOCKERHUB_PASS: 647D22C45C
 
